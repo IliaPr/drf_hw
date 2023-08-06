@@ -1,0 +1,86 @@
+[
+  {
+    "model": "course.course",
+    "pk": 1,
+    "fields": {
+      "name": "test",
+      "preview": "",
+      "description": "тестовая запись"
+    }
+  },
+  {
+    "model": "course.course",
+    "pk": 2,
+    "fields": {
+      "name": "test_2",
+      "preview": "",
+      "description": "попробуем еще раз"
+    }
+  },
+  {
+    "model": "course.lesson",
+    "pk": 1,
+    "fields": {
+      "name": "Урок",
+      "description": "Test for lesson",
+      "preview": "",
+      "video": null,
+      "course": null
+    }
+  },
+  {
+    "model": "course.lesson",
+    "pk": 2,
+    "fields": {
+      "name": "Урок_два",
+      "description": "Test for lesson number two",
+      "preview": "",
+      "video": null,
+      "course": 1
+    }
+  },
+  {
+    "model": "course.payments",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "payment_date": "2023-07-31",
+      "paid_course": 1,
+      "paid_lesson": null,
+      "payment_amount": 44999,
+      "method_payment": "cash"
+    }
+  },
+  {
+    "model": "course.payments",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "payment_date": "2023-07-30",
+      "paid_course": null,
+      "paid_lesson": 1,
+      "payment_amount": 3999,
+      "method_payment": "transfer"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-06-29T20:24:08.805Z",
+      "email": "p27.is@yandex.ru",
+      "phone": "89997896512",
+      "city": "Novosobirsk",
+      "avatar": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]
