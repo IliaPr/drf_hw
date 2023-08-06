@@ -32,3 +32,4 @@ class LessonDetailView(generics.RetrieveAPIView):
 class LessonUpdateView(generics.UpdateAPIView):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
+
