@@ -33,6 +33,7 @@ class CourseSerializer(serializers.ModelSerializer):
             "preview",
             "description",
             "lessons_count",
+            "lessons", 
         )
 
     def create(self, validated_data):
