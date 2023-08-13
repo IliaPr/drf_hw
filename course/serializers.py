@@ -17,7 +17,7 @@ class LessonSerializer(serializers.ModelSerializer):
 
 class CourseSerializer(serializers.ModelSerializer):
     lessons_count = serializers.SerializerMethodField()
-    lessons = LessonSerializer(source='lesson_set', many=True)
+    lessons = LessonSerializer(source='lesson_set', many=True, read_only=True)
 
     def get_lessons_count(self, instance):
         lessons = Lesson.objects.filter(course=instance).all()
@@ -35,9 +35,5 @@ class CourseSerializer(serializers.ModelSerializer):
             "lessons_count",
             "lessons", 
         )
-
-    def create(self, validated_data):
-        validated_data.pop('lessons', None)
-        return super().create(validated_data)
     
     
