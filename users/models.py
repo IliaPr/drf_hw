@@ -4,9 +4,9 @@ from django.db import models
 NULLABLE = {'blank': True, 'null': True}
 
 
-class User(AbstractUser):
-    username = None
 
+class User(AbstractUser):
+    username = models.EmailField(verbose_name='username', unique=True)
     email = models.EmailField(verbose_name='почта', unique=True)
     phone = models.CharField(max_length=25, verbose_name='номер телефона')
     city = models.CharField(max_length=50, verbose_name='город')
