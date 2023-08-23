@@ -1,6 +1,7 @@
 from django.db import models
 
 from config import settings
+from  users.models import User
 from users.models import NULLABLE
 
 
@@ -52,5 +53,15 @@ class Payments(models.Model):
 
     def __str__(self):
         return f'{self.user}: ({self.paid_course if self.paid_course else self.paid_lesson})'
+    
+
+class Subscription(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='курс')
+    status = models.BooleanField(default=True, verbose_name='статус подписки')
+
+    class Meta:
+        verbose_name = "подписка"
+        verbose_name_plural = "подписки"
     
 
