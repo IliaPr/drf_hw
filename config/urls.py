@@ -17,9 +17,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from course.views import CourseViewSet, LessonListView
+
+router = DefaultRouter()
+router.register(r'courses', CourseViewSet) 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('courses/', include('course.urls')),
     path('users/', include('users.urls')),
+    path('courses/lessons/', LessonListView.as_view(), name='lesson-list'),  
+    path('', include(router.urls)),  
 ]

@@ -4,7 +4,6 @@ from django.db import models
 NULLABLE = {'blank': True, 'null': True}
 
 
-
 class User(AbstractUser):
     username = models.CharField(max_length=100, default='user')
     email = models.EmailField(verbose_name='почта', unique=True)
@@ -21,5 +20,3 @@ class User(AbstractUser):
 
     def __str__(self):
         return f'{self.email} - {self.phone}: {self.city}'
-
-
