@@ -46,5 +46,6 @@ services:
     command:  >
       bash -c "python  manage.py collectstatic --noinput
       && python manage.py makemigrations
-      && python manage.py migrate      
+      && python manage.py migrate
+      && celery -A celery worker --loglevel=info
       && python manage.py runserver 0.0.0.0:8000"
