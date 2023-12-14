@@ -12,7 +12,5 @@ COPY . /app/
 # Установка брокера сообщений Redis
 RUN apt-get update && apt-get install -y redis-server
 
-# Запуск Redis и Celery в фоновом режиме
-CMD service redis-server start && celery -A celery worker --loglevel=info
-
-
+# CMD для запуска Celery и основного приложения
+CMD ["bash", "-c", "service redis-server start && celery -A celery worker --loglevel=info && python3 manage.py runserver 0.0.0.0:8000"]

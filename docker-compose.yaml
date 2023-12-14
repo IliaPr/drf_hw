@@ -21,9 +21,20 @@ services:
     container_name: redis_app
     command: redis-server --save 20 1 --loglevel warning
     ports:
-      - "6376:6379"
+      - "6379:6379"
     volumes:
       - ./data/cache:/data
+
+  celery:
+    build:
+      context: .
+      dockerfile: ./docker/CeleryDockerfile
+    container_name: celery_container
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - .env
 
   app:
     restart: always
@@ -33,19 +44,13 @@ services:
     image: app
     container_name: app_container
     depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_started
+      - db
+      - redis
+      - celery
     env_file:
       - .env
     ports:
       - "8000:8000"
     volumes:
       - .:/app
-    command:  >
-      bash -c "python  manage.py collectstatic --noinput
-      && python manage.py makemigrations
-      && python manage.py migrate
-      && celery -A celery worker --loglevel=info
-      && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python3 manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000"
